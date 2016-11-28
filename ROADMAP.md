@@ -1,2 +1,4 @@
 # file: ROADMAP.md
-* add README.md append for automated testing
+#
+* add some automated testing.
+* ensure using multiple hosts works.

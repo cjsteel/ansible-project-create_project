@@ -12,6 +12,8 @@ touch ../ace_ansible_logs/ansible.log
 
 #### edit roles defaults/main.yml files
 
+If you want to change your orinin master's defaults edit them now.
+
 ```shell
 nano roles/production/defaults/main.yml
 nano roles/staging/defaults/main.yml
@@ -20,7 +22,7 @@ nano roles/development/defaults/main.yml
 
 #### create project/group_vars
 
-Create and edit group vars as required.
+Next create and generate contents of create_project/group_vars
 
 ```shell
 mkdir -p group_vars/all
