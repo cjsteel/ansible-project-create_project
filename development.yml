@@ -1,0 +1,6 @@
+---
+- hosts: development
+  become: false
+  gather_facts: false
+  roles:
+    - development

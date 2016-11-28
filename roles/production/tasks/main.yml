@@ -1,0 +1,29 @@
+---
+# tasks file for ansible-role-production
+
+- name: "ensure for production server directory"
+  become: false
+  file:
+    state='directory'
+    path='{{ production_server_dir }}'
+    owner='{{ production_user }}'
+    group='{{ production_group }}'
+    mode='{{ production_mode }}'
+#  when: ansible_distribution == "CentOS"
+  
+- name: "create a bare production repository"
+  command: git init --bare prod-repo
+  args:
+    chdir: '{{ production_project_root_path }}/'
+    creates: '{{ production_project_root_path }}/prod-repo'
+    
+- name: 'template production repos hooks - post-receive'
+  become: false
+  template:
+    backup  : yes
+    src     : 'hooks/production/post-receive.j2'
+    dest    : '{{ production_repository }}/hooks/post-receive'
+    owner   : '{{ production_user }}'
+    group   : '{{ production_group }}'
+    mode    : '{{ production_mode }}'
+#  when: ansible_distribution == "CentOS"

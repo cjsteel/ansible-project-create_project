@@ -1,0 +1,13 @@
+#!/bin/bash
+# '{{ ansible_managed }}'
+while read oldrev newrev ref
+do
+    if [[ $ref =~ .*/master$ ]];
+    then
+        echo "Master ref received.  Deploying master branch to production..."
+        git --work-tree='{{ production_server_dir }}' --git-dir='{{ production_repository }}/' checkout -f
+    else
+        echo "Ref $ref successfully received.  Doing nothing: only the master branch may be deployed on this server."
+    fi
+done
+

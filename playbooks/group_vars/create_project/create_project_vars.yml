@@ -1,0 +1,39 @@
+---
+# file: group_vars/create_project/create_project.yml
+
+## create project variables
+
+## create project licence vars
+
+create_project_licence_year : '2016'
+create_project_author       : 'Christopher Steel'
+create_project_project_name : 'new_project'
+
+## create project directory structure
+
+### remote directories
+
+- name: ensure for remote directories
+  file:
+    state   : '{{ item.value.state   | default("directory") }}'
+    path    : '{{ item.value.path    | default(mandatory) }}'
+    owner   : '{{ item.value.owner   | default(omit) }}'
+    group   : '{{ item.value.group   | default(omit) }}'
+    mode    : '{{ item.value.mode    | default(omit) }}'
+    recurse : '{{ item.value.recurse | default(omit) }}'
+  with_dict: ensure_dirs_on_remote
+
+### local directories
+
+- name: ensure for local directories
+  delegate_to: 127.0.0.1
+  file:
+    state   : '{{ item.value.state   | default("directory") }}'
+    path    : '{{ item.value.path    | default(mandatory) }}'
+    owner   : '{{ item.value.owner   | default(omit) }}'
+    group   : '{{ item.value.group   | default(omit) }}'
+    mode    : '{{ item.value.mode    | default(omit) }}'
+    recurse : '{{ item.value.recurse | default(omit) }}'
+  with_dict: ensure_dirs_on_local
+
+

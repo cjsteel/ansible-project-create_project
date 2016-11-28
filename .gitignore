@@ -1,0 +1,27 @@
+# temp files
+*~
+
+# private files
+.private
+.prv
+*.retry
+.vault
+active_adapter_name.txt
+ansible.log
+bridged_adapter
+facts/
+port_speed
+targets_active_interface_or_bridge_port_speed.txt
+
+# directories
+
+# uncomment if if we want these items in a separate private repository
+inventory/*
+group_vars/*
+host_vars/*
+
+# the roles directory contains other repositories
+
+#roles/*
+
+data_collection/*

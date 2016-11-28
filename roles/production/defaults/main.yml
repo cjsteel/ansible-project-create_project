@@ -1,0 +1,20 @@
+---
+# defaults file for roles/ansible-role-production
+#
+#
+
+production_user  : csteel
+production_group : '{{ production_user }}'
+production_host  : localhost
+production_mode  : '0775'
+
+production_projects_root_path  : '/home/{{ development_user }}/projects'
+production_project_type        : 'ansible'
+production_project_group       : 'ace' 
+production_project_name        : 'dev_ws'
+production_project_root_path   : '{{ production_projects_root_path }}/{{ production_project_type }}/{{ production_project_group }}/{{ production_project_name }}'
+
+production_server_dir : '{{ production_project_root_path}}/prod-srv'
+production_repository  : '{{ production_project_root_path }}/prod-repo'
+production_repository_url : '{{ production_user }}@{{ production_host }}\:{{ production_repository }}'
+

@@ -1,0 +1,6 @@
+---
+- hosts: production
+  become: false
+  gather_facts: false
+  roles:
+    - production

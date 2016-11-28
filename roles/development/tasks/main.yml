@@ -1,0 +1,37 @@
+---
+# tasks file for ansible-role-development
+
+- name: "ensure for the development project repository (clone)"
+  become: false
+  git:
+    bare        : 'no'
+    clone       : 'yes'
+    dest        : '{{ development_repository }}'
+#    executable  : '/usr/bin/git'
+    force       : 'no'
+    remote      : 'origin'
+    repo        : '{{ development_origin_master_repository }}'
+#    track_submodules : 'no'
+#    version     : 'release-0.22'
+
+## template development repositories .git/hooks/post-commit
+
+- name: 'template development repos .git/hooks/post-commit'
+  become: false
+  template:
+    backup  : yes
+    src     : '.git/hooks/development/post-commit.j2'
+    dest    : '{{ development_repository }}/.git/hooks/post-commit'
+    owner   : '{{ development_user }}'
+    group   : '{{ development_group }}'
+    mode    : '{{ development_mode }}'
+#  when: ansible_distribution == "CentOS" 
+
+- name: "Execute 'git remote add production' in the development repo"
+  command: 'git remote add production {{ production_repository_url }}'
+  args:
+    chdir: '{{ development_repository }}'
+  ignore_errors: yes
+#    creates: '{{ project_root_path }}/added_prod_remote_to_dev_repo'
+
+

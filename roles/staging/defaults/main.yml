@@ -1,0 +1,18 @@
+---
+# defaults file for roles/ansible-role-staging
+#
+#
+
+staging_user    : 'csteel'
+staging_group   : '{{ staging_user }}'
+staging_host    : 'localhost'
+staging_mode    : '0775'
+
+staging_projects_root_path  : '/home/{{ development_user }}/projects'
+staging_project_type        : 'ansible'
+staging_project_group       : 'ace' 
+staging_project_name        : 'dev_ws'
+staging_project_root_path   : '{{ staging_projects_root_path }}/{{ staging_project_type }}/{{ staging_project_group }}/{{ staging_project_name }}'
+
+staging_server_dir          : '{{ staging_project_root_path}}/stage-srv'
+
