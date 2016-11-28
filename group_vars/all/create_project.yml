@@ -1,8 +1,5 @@
 ---
 # group_vars/all/create_project.yml
-#
-#
-
 create_project_licence_year: '2016'
 create_project_author      : 'Christopher Steel'
 
@@ -15,10 +12,10 @@ production_group : '{{ production_user }}'
 production_host  : localhost
 production_mode  : '0775'
 
-production_projects_root_path  : '/home/{{ production_user }}/projects'
+production_projects_root_path  : '/home/{{ development_user }}/projects'
 production_project_type        : 'ansible'
 production_project_group       : 'ace' 
-production_project_name        : 'create_project'
+production_project_name        : 'ws_parc'
 production_project_root_path   : '{{ production_projects_root_path }}/{{ production_project_type }}/{{ production_project_group }}/{{ production_project_name }}'
 
 production_server_dir : '{{ production_project_root_path}}/prod-srv'
@@ -36,8 +33,9 @@ staging_mode    : '0775'
 
 staging_projects_root_path  : '{{ production_projects_root_path }}'
 staging_project_type        : '{{ production_project_type }}'
-staging_project_group       : '{{ production_project_group }}' 
+staging_project_group       : '{{ production_project_group }}'
 staging_project_name        : '{{ production_project_name }}'
+
 staging_project_root_path   : '{{ staging_projects_root_path }}/{{ staging_project_type }}/{{ staging_project_group }}/{{ staging_project_name }}'
 
 staging_server_dir          : '{{ staging_project_root_path}}/stage-srv'
@@ -59,5 +57,5 @@ development_project_group      : '{{ production_project_name }}'
 development_project_name       : '{{ production_project_name }}'
 development_project_root_path  : '{{ development_projects_root_path }}/{{ development_project_type }}/{{ development_project_group }}/{{ development_project_name }}'
 
-development_repository : '{{ development_project_root_path}}/dev-repo'
+development_repository : '{{ development_project_root_path }}/dev-repo'
 

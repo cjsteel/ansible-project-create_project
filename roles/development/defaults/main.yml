@@ -16,5 +16,5 @@ development_project_group      : '{{ production_project_name }}'
 development_project_name       : '{{ production_project_name }}'
 development_project_root_path  : '{{ development_projects_root_path }}/{{ development_project_type }}/{{ development_project_group }}/{{ development_project_name }}'
 
-development_repository : '{{ development_project_root_path}}/dev-repo'
+development_repository : '{{ development_project_root_path }}/dev-repo'
 
