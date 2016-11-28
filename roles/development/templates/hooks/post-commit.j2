@@ -1,0 +1,5 @@
+#!/bin/bash
+#git push origin feature
+#git push origin master
+unset GIT_INDEX_FILE
+git --work-tree={{ staging_server_dir }} --git-dir={{ development_repository }}/.git checkout -f
