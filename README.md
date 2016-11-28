@@ -64,3 +64,4 @@ cat group_vars/all/create_project.yml
 ansible-playbook systems.yml --ask-become-pass
 ```
 
+create_project test
