@@ -3,18 +3,18 @@
 #
 #
 
-development_origin_master_repository: 'git@github.com:cjsteel/ansible-project-dev_ws.git'
+development_origin_master_repository: 'git@github.com:cjsteel/ansible-project-create_project.git'
 
 development_user  : 'csteel'
 development_group : '{{ development_user }}'
 development_host  : 'localhost'
 development_mode  : '0775'
 
-development_projects_root_path           : '/home/{{ development_user }}/projects'
-development_project_type                 : 'ansible'
-development_project_group                : 'ace' 
-development_project_name                 : 'dev_ws'
-development_project_root_path           : '{{ development_projects_root_path }}/{{ development_project_type }}/{{ development_project_group }}/{{ development_project_name }}'
+development_projects_root_path : '/home/{{ development_user }}/projects'
+development_project_type       : 'ansible'
+development_project_group      : 'ace' 
+development_project_name       : 'create_project'
+development_project_root_path  : '{{ development_projects_root_path }}/{{ development_project_type }}/{{ development_project_group }}/{{ development_project_name }}'
 
 development_repository : '{{ development_project_root_path}}/dev-repo'
 

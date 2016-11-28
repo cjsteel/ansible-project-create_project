@@ -20,7 +20,7 @@
   become: false
   template:
     backup  : yes
-    src     : '.git/hooks/development/post-commit.j2'
+    src     : '.git/hooks/post-commit.j2'
     dest    : '{{ development_repository }}/.git/hooks/post-commit'
     owner   : '{{ development_user }}'
     group   : '{{ development_group }}'

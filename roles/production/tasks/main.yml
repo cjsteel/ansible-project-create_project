@@ -21,7 +21,7 @@
   become: false
   template:
     backup  : yes
-    src     : 'hooks/production/post-receive.j2'
+    src     : 'hooks/post-receive.j2'
     dest    : '{{ production_repository }}/hooks/post-receive'
     owner   : '{{ production_user }}'
     group   : '{{ production_group }}'

@@ -5,9 +5,30 @@
 ### ansible logging
 
 ```shell
-mkdir ../ace_ansible_logs
-touch ../ace_ansible_logs/ansible.log
+mkdir ace_ansible_logs
+touch ace_ansible_logs/ansible.log
 ```
+### inventory
+
+```shell
+mkdir inventory
+touch inventory/dev
+nano inventory/dev
+```
+
+#### content example
+
+```yaml
+[development]
+localhost ansible_connection=local
+
+[staging]
+localhost ansible_connection=local
+
+[production]
+localhost ansible_connection=local
+```
+
 ### project/group_vars
 
 #### edit roles defaults/main.yml files
@@ -37,12 +58,9 @@ cat roles/development/defaults/main.yml | grep -v \\--- >> group_vars/all/create
 cat group_vars/all/create_project.yml
 ```
 
-Remove extraneous '---' as required
-
-```shell
-nano group_vars/all/create_project.yml
-```
-
 ###
 
+```shell
+ansible-playbook systems.yml --ask-become-pass
+```
 
