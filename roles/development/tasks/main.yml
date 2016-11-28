@@ -34,4 +34,66 @@
   ignore_errors: yes
 #    creates: '{{ project_root_path }}/added_prod_remote_to_dev_repo'
 
+# START TESTING
+
+## git pull
+
+- name: "Execute 'git pull' in the development repo"
+  command: 'git pull'
+  args:
+    chdir: '{{ development_repository }}'
+#  ignore_errors: yes
+
+## create some content
+
+- name: "Execute an 'echo create_project test >> README.md' in the development repo"
+  shell: 'echo "create_project test" >> {{ development_repository }}/README.md'
+  args:
+    chdir: '{{ development_repository }}'
+#  ignore_errors: yes
+
+- name: "Execute 'git add README.md' in the development repo"
+  command: 'git add README.md'
+  args:
+    chdir: '{{ development_repository }}'
+#  ignore_errors: yes
+
+- name: "Execute a 'git commit' in the development repo"
+  command: "git commit -m 'create_project test'"
+  args:
+    chdir: '{{ development_repository }}'
+#  ignore_errors: yes
+
+# check staging
+
+- name: "Execute 'cat README.md' in the development repo"
+  command: 'cat README.md | grep "create_project test"'
+  args:
+    chdir: '{{ development_repository }}'
+  ignore_errors: yes
+
+## production
+
+### check production
+
+- name: "Execute 'git push production master' in the development repo"
+  command: 'git push production master'
+  args:
+    chdir: '{{ development_repository }}'
+
+- name: "Execute 'cat README.md' in the production server directory"
+  command: 'cat README.md | grep "create_project test"'
+  args:
+    chdir: '{{ production_server_dir }}'
+  ignore_errors: yes
+
+## origin
+
+### push to origin
+
+- name: "Execute 'git push production master' in the development repo"
+  command: 'git push origin master'
+  args:
+    chdir: '{{ development_repository }}'
+
 

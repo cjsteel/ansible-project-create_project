@@ -9,6 +9,8 @@
 .vault
 
 # directories
+ace_ansible_logs/*
+ace_ansible_logs/ansible.log
 #
 #inventory/*
 #group_vars/*
