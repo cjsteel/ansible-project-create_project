@@ -1,5 +1,8 @@
 ---
 # group_vars/all/create_project.yml
+#
+#
+
 create_project_licence_year: '2016'
 create_project_author      : 'Christopher Steel'
 
@@ -12,7 +15,7 @@ production_group : '{{ production_user }}'
 production_host  : localhost
 production_mode  : '0775'
 
-production_projects_root_path  : '/home/{{ development_user }}/projects'
+production_projects_root_path  : '/home/{{ production_user }}/projects'
 production_project_type        : 'ansible'
 production_project_group       : 'ace' 
 production_project_name        : 'create_project'
@@ -26,15 +29,15 @@ production_repository_url : '{{ production_user }}@{{ production_host }}\:{{ pro
 #
 #
 
-staging_user    : 'csteel'
+staging_user    : '{{ production_user }}'
 staging_group   : '{{ staging_user }}'
-staging_host    : 'localhost'
+staging_host    : '{{ production_host }}'
 staging_mode    : '0775'
 
-staging_projects_root_path  : '/home/{{ development_user }}/projects'
-staging_project_type        : 'ansible'
-staging_project_group       : 'ace' 
-staging_project_name        : 'create_project'
+staging_projects_root_path  : '{{ production_projects_root_path }}'
+staging_project_type        : '{{ production_project_type }}'
+staging_project_group       : '{{ production_project_group }}' 
+staging_project_name        : '{{ production_project_name }}'
 staging_project_root_path   : '{{ staging_projects_root_path }}/{{ staging_project_type }}/{{ staging_project_group }}/{{ staging_project_name }}'
 
 staging_server_dir          : '{{ staging_project_root_path}}/stage-srv'
@@ -45,15 +48,15 @@ staging_server_dir          : '{{ staging_project_root_path}}/stage-srv'
 
 development_origin_master_repository: 'git@github.com:cjsteel/ansible-project-create_project.git'
 
-development_user  : 'csteel'
+development_user  : '{{ production_user}}'
 development_group : '{{ development_user }}'
-development_host  : 'localhost'
+development_host  : '{{ production_host }}'
 development_mode  : '0775'
 
-development_projects_root_path : '/home/{{ development_user }}/projects'
-development_project_type       : 'ansible'
-development_project_group      : 'ace' 
-development_project_name       : 'create_project'
+development_projects_root_path : '{{ production_projects_root_path }}'
+development_project_type       : '{{ production_project_type }}'
+development_project_group      : '{{ production_project_name }}' 
+development_project_name       : '{{ production_project_name }}'
 development_project_root_path  : '{{ development_projects_root_path }}/{{ development_project_type }}/{{ development_project_group }}/{{ development_project_name }}'
 
 development_repository : '{{ development_project_root_path}}/dev-repo'
