@@ -9,7 +9,7 @@ create_project_license         : 'mit'
 create_project_user            : 'cjs'
 create_project_accept_hostkey  : True
 create_project_project_name    : 'acemenu'
-create_project_shared_repo_url : 'git@github.com:cjsteel/ansible-project-create_project.git'
+create_project_shared_repo_url : 'git@github.com:cjsteel/ansible-role-acemenu.git'
 create_project_testing         : False
 
 # defaults file for roles/ansible-role-production

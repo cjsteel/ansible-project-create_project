@@ -51,7 +51,7 @@ echo "create_project_license         : 'mit'"               >> group_vars/all/cr
 echo "create_project_user            : 'cjs'"               >> group_vars/all/create_project.yml
 echo "create_project_accept_hostkey  : True"                >> group_vars/all/create_project.yml
 echo "create_project_project_name    : 'acemenu'"           >> group_vars/all/create_project.yml
-echo "create_project_shared_repo_url : 'git@github.com:cjsteel/ansible-project-create_project.git'" \
+echo "create_project_shared_repo_url : 'git@github.com:cjsteel/ansible-role-acemenu.git'" \
         >> group_vars/all/create_project.yml
 #echo "create_project_shared_repo_url : git@github.com:cjsteel/ansible-project-create_project.git'" \
 #        >> group_vars/all/create_project.yml
