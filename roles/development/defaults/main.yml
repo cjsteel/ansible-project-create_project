@@ -3,6 +3,8 @@
 #
 #
 
+create_project_testing         : False
+
 # development_origin_master_repository: 'git@github.com:cjsteel/ansible-project-create_project.git'
 development_origin_master_repository: '{{ create_project_shared_repo_url }}'
 
