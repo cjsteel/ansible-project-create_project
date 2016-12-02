@@ -44,7 +44,7 @@
   args:
     chdir: '{{ development_repository }}'
 #  ignore_errors: yes
-
+  when: create_project_testing is defined and create_project_testing == True
 ## create some content
 
 - name: "Execute an 'echo create_project test >> README.md' in the development repo"
@@ -52,18 +52,22 @@
   args:
     chdir: '{{ development_repository }}'
 #  ignore_errors: yes
+  when: create_project_testing is defined and create_project_testing == True
 
 - name: "Execute 'git add README.md' in the development repo"
   command: 'git add README.md'
   args:
     chdir: '{{ development_repository }}'
 #  ignore_errors: yes
+  when: create_project_testing is defined and create_project_testing == True
+
 
 - name: "Execute a 'git commit' in the development repo"
   command: "git commit -m 'create_project test'"
   args:
     chdir: '{{ development_repository }}'
 #  ignore_errors: yes
+  when: create_project_testing is defined and create_project_testing == True
 
 # check staging
 
@@ -72,6 +76,7 @@
   args:
     chdir: '{{ development_repository }}'
   ignore_errors: yes
+  when: create_project_testing is defined and create_project_testing == True
 
 ## production
 
@@ -81,12 +86,14 @@
   command: 'git push production master'
   args:
     chdir: '{{ development_repository }}'
+  when: create_project_testing is defined and create_project_testing == True
 
 - name: "Execute 'cat README.md' in the production server directory"
   command: 'cat README.md | grep "create_project test"'
   args:
     chdir: '{{ production_server_dir }}'
   ignore_errors: yes
+  when: create_project_testing is defined and create_project_testing == True
 
 ## origin
 
@@ -96,5 +103,6 @@
   command: 'git push origin master'
   args:
     chdir: '{{ development_repository }}'
+  when: create_project_testing is defined and create_project_testing == True
 
 

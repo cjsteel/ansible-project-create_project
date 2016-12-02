@@ -3,14 +3,14 @@
 #
 #
 
-create_project_license_year   : '2016'
-create_project_author         : 'Christopher Steel'
+create_project_license_year    : '2016'
+create_project_author          : 'Christopher Steel'
 create_project_license         : 'mit'
 create_project_user            : 'cjs'
 create_project_accept_hostkey  : True
 create_project_project_name    : 'acemenu'
-create_project_shared_repo_url : 'git@github.com:cjsteel/ansible-role-acemenu.git'
-# create_project_shared_repo_url : git@github.com:cjsteel/ansible-project-create_project.git'
+create_project_shared_repo_url : 'git@github.com:cjsteel/ansible-project-create_project.git'
+create_project_testing         : False
 
 # defaults file for roles/ansible-role-production
 #
@@ -44,6 +44,7 @@ staging_projects_root_path  : '{{ production_projects_root_path }}'
 staging_project_type        : '{{ production_project_type }}'
 staging_project_group       : '{{ production_project_group }}'
 staging_project_name        : '{{ production_project_name }}'
+
 staging_project_root_path   : '{{ staging_projects_root_path }}/{{ staging_project_type }}/{{ staging_project_group }}/{{ staging_project_name }}'
 
 staging_server_dir          : '{{ staging_project_root_path}}/stage-srv'
@@ -52,6 +53,7 @@ staging_server_dir          : '{{ staging_project_root_path}}/stage-srv'
 #
 #
 
+# development_origin_master_repository: 'git@github.com:cjsteel/ansible-project-create_project.git'
 development_origin_master_repository: '{{ create_project_shared_repo_url }}'
 
 development_user  : '{{ production_user}}'
