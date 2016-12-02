@@ -3,7 +3,7 @@
 #
 #
 
-production_user  : csteel
+production_user  : '{{ create_project_user }}'
 production_group : '{{ production_user }}'
 production_host  : localhost
 production_mode  : '0775'

@@ -11,6 +11,7 @@
     force       : 'no'
     remote      : 'origin'
     repo        : '{{ development_origin_master_repository }}'
+    accept_hostkey : '{{ create_project_accept_hostkey }}'
 #    track_submodules : 'no'
 #    version     : 'release-0.22'
 

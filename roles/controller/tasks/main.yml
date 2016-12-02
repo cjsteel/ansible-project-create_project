@@ -6,3 +6,15 @@
   with_items:
     - curl
   tags: [ 'packages' ]
+
+- name: "template project license"
+  become: false
+  template:
+    backup  : yes
+    src     : 'license_{{ create_project_license }}.j2'
+    dest    : '{{ development_repository }}/LICENSE'
+    owner   : '{{ development_user }}'
+    group   : '{{ development_group }}'
+    mode    : '{{ development_mode }}'
+#  when: ansible_distribution == "CentOS" 
+

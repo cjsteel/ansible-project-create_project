@@ -1,13 +1,19 @@
 ---
 # group_vars/all/create_project.yml
-create_project_licence_year: '2016'
-create_project_author      : 'Christopher Steel'
+#
+#
+
+create_project_license_year   : '2016'
+create_project_author         : 'Christopher Steel'
+create_project_license        : 'mit'
+create_project_user           : 'cjs'
+create_project_accept_hostkey : True
 
 # defaults file for roles/ansible-role-production
 #
 #
 
-production_user  : csteel
+production_user  : '{{ create_project_user }}'
 production_group : '{{ production_user }}'
 production_host  : localhost
 production_mode  : '0775'
