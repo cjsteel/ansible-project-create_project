@@ -5,9 +5,12 @@
 
 create_project_license_year   : '2016'
 create_project_author         : 'Christopher Steel'
-create_project_license        : 'mit'
-create_project_user           : 'cjs'
-create_project_accept_hostkey : True
+create_project_license         : 'mit'
+create_project_user            : 'cjs'
+create_project_accept_hostkey  : True
+create_project_project_name    : 'acemenu'
+create_project_shared_repo_url : 'git@github.com:cjsteel/ansible-role-acemenu.git'
+# create_project_shared_repo_url : git@github.com:cjsteel/ansible-project-create_project.git'
 
 # defaults file for roles/ansible-role-production
 #
@@ -21,7 +24,7 @@ production_mode  : '0775'
 production_projects_root_path  : '/home/{{ development_user }}/projects'
 production_project_type        : 'ansible'
 production_project_group       : 'ace' 
-production_project_name        : 'ws_parc'
+production_project_name        : '{{ create_project_project_name }}'
 production_project_root_path   : '{{ production_projects_root_path }}/{{ production_project_type }}/{{ production_project_group }}/{{ production_project_name }}'
 
 production_server_dir : '{{ production_project_root_path}}/prod-srv'
@@ -41,7 +44,6 @@ staging_projects_root_path  : '{{ production_projects_root_path }}'
 staging_project_type        : '{{ production_project_type }}'
 staging_project_group       : '{{ production_project_group }}'
 staging_project_name        : '{{ production_project_name }}'
-
 staging_project_root_path   : '{{ staging_projects_root_path }}/{{ staging_project_type }}/{{ staging_project_group }}/{{ staging_project_name }}'
 
 staging_server_dir          : '{{ staging_project_root_path}}/stage-srv'
@@ -50,7 +52,7 @@ staging_server_dir          : '{{ staging_project_root_path}}/stage-srv'
 #
 #
 
-development_origin_master_repository: 'git@github.com:cjsteel/ansible-project-create_project.git'
+development_origin_master_repository: '{{ create_project_shared_repo_url }}'
 
 development_user  : '{{ production_user}}'
 development_group : '{{ development_user }}'
@@ -59,7 +61,7 @@ development_mode  : '0775'
 
 development_projects_root_path : '{{ production_projects_root_path }}'
 development_project_type       : '{{ production_project_type }}'
-development_project_group      : '{{ production_project_name }}' 
+development_project_group      : '{{ production_project_group }}' 
 development_project_name       : '{{ production_project_name }}'
 development_project_root_path  : '{{ development_projects_root_path }}/{{ development_project_type }}/{{ development_project_group }}/{{ development_project_name }}'
 

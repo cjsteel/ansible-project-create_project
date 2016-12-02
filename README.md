@@ -44,11 +44,16 @@ echo "# group_vars/all/create_project.yml"                 >> group_vars/all/cre
 echo "#"                                                   >> group_vars/all/create_project.yml
 echo "#"                                                   >> group_vars/all/create_project.yml
 echo ""                                                    >> group_vars/all/create_project.yml
-echo "create_project_license_year   : '2016'"              >> group_vars/all/create_project.yml
-echo "create_project_author         : 'Christopher Steel'" >> group_vars/all/create_project.yml
-echo "create_project_license        : 'mit'"               >> group_vars/all/create_project.yml
-echo "create_project_user           : 'cjs'"               >> group_vars/all/create_project.yml
-echo "create_project_accept_hostkey : True"                >> group_vars/all/create_project.yml
+echo "create_project_license_year    : '2016'"              >> group_vars/all/create_project.yml
+echo "create_project_author          : 'Christopher Steel'" >> group_vars/all/create_project.yml
+echo "create_project_license         : 'mit'"               >> group_vars/all/create_project.yml
+echo "create_project_user            : 'cjs'"               >> group_vars/all/create_project.yml
+echo "create_project_accept_hostkey  : True"                >> group_vars/all/create_project.yml
+echo "create_project_project_name    : 'acemenu'"           >> group_vars/all/create_project.yml
+echo "create_project_shared_repo_url : 'git@github.com:cjsteel/ansible-project-create_project.git'" \
+        >> group_vars/all/create_project.yml
+#echo "create_project_shared_repo_url : git@github.com:cjsteel/ansible-project-create_project.git'" \
+#        >> group_vars/all/create_project.yml
 echo ""                                                    >> group_vars/all/create_project.yml
 cat roles/production/defaults/main.yml  | grep -v \\---    >> group_vars/all/create_project.yml
 cat roles/staging/defaults/main.yml     | grep -v \\---    >> group_vars/all/create_project.yml
