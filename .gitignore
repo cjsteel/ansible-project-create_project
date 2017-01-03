@@ -1,17 +1,23 @@
 # temp files
 *~
 
-# private files
-#
-.private
-.prv
-*.retry
-.vault
-
 # directories
 ace_ansible_logs/*
 ace_ansible_logs/ansible.log
 #
-#inventory/*
-#group_vars/*
-#host_vars/*
+inventory/*
+group_vars/*
+host_vars/*
+roles/*
+
+
+# temp files
+*~
+
+# private files
+
+.private
+.prv
+*.retry
+.vault
+ansible.log
