@@ -6,10 +6,11 @@
 create_project_license_year    : '2016'
 create_project_author          : 'Christopher Steel'
 create_project_license         : 'mit'
-create_project_user            : 'cjs'
+create_project_user            : 'aadams'
 create_project_accept_hostkey  : True
-create_project_project_name    : 'acemenu'
-create_project_shared_repo_url : 'git@github.com:cjsteel/ansible-role-acemenu.git'
+create_project_project_name    : 'ace_parc'
+create_project_shared_repo_url : 'git@github.com:cjsteel/ansible-project-ace_parc.git'
+
 create_project_testing         : False
 
 # defaults file for roles/ansible-role-production

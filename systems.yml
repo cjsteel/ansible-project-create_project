@@ -1,13 +1,9 @@
 ---
 - hosts: all
-  become: true
+  become: false
   gather_facts: false
-  tasks:
-    - name: update apt cache
-      apt: update_cache=yes cache_valid_time=86400
-      tags: [ 'packages' ]
 
-- include: controller.yml
+#- include: controller.yml
 - include: production.yml
 - include: staging.yml
 - include: development.yml

@@ -1,26 +1,50 @@
 # README.md
 
-## Preparation
+## Requirements
 
-### setup logging directory
+### Write access to target repository.
+
+The means you need to have a passphrase protected SSH key pair on the local system with the ssh key loaded in memory. You will want to do, or have done something like the following:
+
+#### Setup SSH Keys
+
+If you do not have a passphrase keypair generate one as follows:
 
 ```shell
-mkdir ace_ansible_logs
-touch ace_ansible_logs/ansible.log
+
+ssh-keygen
+
 ```
-### ensure for inventory/dev
+
+Place a copy of your public key on the target git server
+
+### ssh agent
+
+Load you passphrase into memory:
 
 ```shell
+
+exec /usr/bin/ssh-agent $SHELL
+ssh-add -t 3H
+
+```
+
+### setup your host file
+
+```shell
+
 mkdir inventory
 touch inventory/dev
 nano inventory/dev
+
 ```
 
 #### content example
 
 Example for developing and testing locally.
 
-```yaml
+```ini
+
 [development]
 localhost ansible_connection=local
 
@@ -29,6 +53,7 @@ localhost ansible_connection=local
 
 [production]
 localhost ansible_connection=local
+
 ```
 
 ### project/group_vars
