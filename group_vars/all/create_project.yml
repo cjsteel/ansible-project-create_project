@@ -1,40 +1,40 @@
 ---
-# group_vars/all/create_project.yml
-#
-#
+# file: group_vars/all/create_project.yml
 
 create_project_license_year    : '2016'
 create_project_author          : 'Christopher Steel'
 create_project_license         : 'mit'
-create_project_user            : 'aadams'
+create_project_user            : 'cjs'
 create_project_accept_hostkey  : True
-create_project_project_name    : 'ace_parc'
-create_project_shared_repo_url : 'git@github.com:cjsteel/ansible-project-ace_parc.git'
+
+# git / repo variables
+
+create_project_project_name    : 'automa'
+create_project_git_user        : 'cjsteel'
+create_project_git_server      : 'github.com'
+create_project_shared_repo_url : 'git@{{ create_project_git_server }}:{{ create_project_git_user }}/ansible-project-{{ create_project_project_name }}.git'
+#create_project_shared_repo_url : 'git@github.com:cjsteel/ansible-project-automa.git' 
 
 create_project_testing         : False
 
-# defaults file for roles/ansible-role-production
-#
-#
+## production repository variables
 
 production_user  : '{{ create_project_user }}'
 production_group : '{{ production_user }}'
-production_host  : localhost
+production_host  : 'localhost'
 production_mode  : '0775'
 
 production_projects_root_path  : '/home/{{ development_user }}/projects'
 production_project_type        : 'ansible'
-production_project_group       : 'ace' 
+production_project_group       : 'ace'
 production_project_name        : '{{ create_project_project_name }}'
 production_project_root_path   : '{{ production_projects_root_path }}/{{ production_project_type }}/{{ production_project_group }}/{{ production_project_name }}'
 
-production_server_dir : '{{ production_project_root_path}}/prod-srv'
-production_repository  : '{{ production_project_root_path }}/prod-repo'
+production_server_dir     : '{{ production_project_root_path}}/prod-srv'
+production_repository     : '{{ production_project_root_path }}/prod-repo'
 production_repository_url : '{{ production_user }}@{{ production_host }}\:{{ production_repository }}'
 
-# defaults file for roles/ansible-role-staging
-#
-#
+## staging variables
 
 staging_user    : '{{ production_user }}'
 staging_group   : '{{ staging_user }}'
@@ -50,9 +50,7 @@ staging_project_root_path   : '{{ staging_projects_root_path }}/{{ staging_proje
 
 staging_server_dir          : '{{ staging_project_root_path}}/stage-srv'
 
-# defaults file for ansible-role-development
-#
-#
+## development variables
 
 # development_origin_master_repository: 'git@github.com:cjsteel/ansible-project-create_project.git'
 development_origin_master_repository: '{{ create_project_shared_repo_url }}'
