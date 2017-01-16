@@ -2,7 +2,7 @@
 # tasks file for ansible-role-staging
 
 - name: "ensure for staging server directory"
-  become: false
+  become: true
   file:
     state='directory'
     path='{{ staging_server_dir }}'

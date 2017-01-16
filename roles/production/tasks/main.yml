@@ -1,8 +1,20 @@
 ---
 # tasks file for ansible-role-production
 
+- name: "PRODUCTION - ansible_env.HOME through ansible.env as production user"
+  become: '{{ production_user }}'
+  debug:
+    var=ansible_env.HOME
+  tags: 'debug'
+
+- name: "PRODUCTION - debug via lookup on env as production user"
+  become: '{{ production_user }}'
+  debug:
+    var=lookup('env','HOME')
+  tags: 'debug'
+
 - name: "ensure for production server directory"
-  become: false
+  become: true
   file:
     state='directory'
     path='{{ production_server_dir }}'
@@ -12,13 +24,26 @@
 #  when: ansible_distribution == "CentOS"
   
 - name: "create a bare production repository"
-  command: git init --bare prod-repo
+  become: '{{ production_user }}'
+  command: sudo -u {{ production_user }} git init --bare prod-repo
   args:
     chdir: '{{ production_project_root_path }}/'
     creates: '{{ production_project_root_path }}/prod-repo'
+
+#  git:
+#    bare: yes
+#    name: prod-repo
+#    dest: '{{ production_project_root_path }}/prod-repo'
+#    clone: no
+#    update: no
+
+#  command: git init --bare prod-repo
+#  args:
+#    chdir: '{{ production_project_root_path }}/'
+#    creates: '{{ production_project_root_path }}/prod-repo'
     
 - name: 'template production repos hooks - post-receive'
-  become: false
+  become: true
   template:
     backup  : yes
     src     : 'hooks/post-receive.j2'

@@ -3,21 +3,3 @@
 #
 #
 
-create_project_testing         : False
-
-# development_origin_master_repository: 'git@github.com:cjsteel/ansible-project-create_project.git'
-development_origin_master_repository: '{{ create_project_shared_repo_url }}'
-
-development_user  : '{{ production_user}}'
-development_group : '{{ development_user }}'
-development_host  : '{{ production_host }}'
-development_mode  : '0775'
-
-development_projects_root_path : '{{ production_projects_root_path }}'
-development_project_type       : '{{ production_project_type }}'
-development_project_group      : '{{ production_project_group }}' 
-development_project_name       : '{{ production_project_name }}'
-development_project_root_path  : '{{ development_projects_root_path }}/{{ development_project_type }}/{{ development_project_group }}/{{ development_project_name }}'
-
-development_repository : '{{ development_project_root_path }}/dev-repo'
-
