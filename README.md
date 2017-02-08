@@ -14,9 +14,7 @@ The means you need to have a passphrase protected SSH key pair on the local syst
 If you do not have a passphrase keypair generate one as follows:
 
 ```shell
-
 ssh-keygen
-
 ```
 
 Place a copy of your public key on the target git server
@@ -26,20 +24,16 @@ Place a copy of your public key on the target git server
 Load you passphrase into memory:
 
 ```shell
-
 exec /usr/bin/ssh-agent $SHELL
 ssh-add -t 3H
-
 ```
 
 ### setup your host file
 
 ```shell
-
 mkdir inventory
 touch inventory/dev
 nano inventory/dev
-
 ```
 
 #### content example
@@ -47,7 +41,6 @@ nano inventory/dev
 Example for developing and testing locally.
 
 ```ini
-
 [development]
 localhost ansible_connection=local
 
@@ -56,7 +49,6 @@ localhost ansible_connection=local
 
 [production]
 localhost ansible_connection=local
-
 ```
 
 ### project/group_vars
@@ -66,7 +58,6 @@ localhost ansible_connection=local
 Next create and generate contents of create_project/group_vars
 
 ```shell
-
 mkdir -p group_vars/all
 echo "---"                                                  > group_vars/all/create_project.yml
 echo "# group_vars/all/create_project.yml"                  >> group_vars/all/create_project.yml
@@ -90,7 +81,6 @@ cat roles/production/defaults/main.yml  | grep -v \\---    >> group_vars/all/cre
 cat roles/staging/defaults/main.yml     | grep -v \\---    >> group_vars/all/create_project.yml
 cat roles/development/defaults/main.yml | grep -v \\---    >> group_vars/all/create_project.yml
 cat group_vars/all/create_project.yml
-
 ```
 
 #### Customize global variables
@@ -98,12 +88,10 @@ cat group_vars/all/create_project.yml
 If running everything locally you should at least change the following four variables in `group_vars/all/create_project.yml`:
 
 ```yaml
-
 create_project_license_year: '2016'
 create_project_author      : 'Christopher Steel'
 create_project_license     : 'mit'
 create_project_user        : 'cjs'
-
 ```
 
 If you want to run against multiple hosts (dev, staging, production) you may want to make changes to  other variables and may need to make other adjustments to the scripts.
@@ -111,16 +99,12 @@ If you want to run against multiple hosts (dev, staging, production) you may wan
 ## Run your playbook
 
 ```shell
-
 ansible-playbook systems.yml --ask-become-pass
-
 ```
 
 ## Testing results
 
 Running the projects main playbook will run some tests as well. Testing results will be below this line:
-___
-
 Getting Started
 ===============
 
@@ -176,9 +160,7 @@ On the Ansible controller we will create a regular user without sudo.
 ### Ubuntu
 
 ```shell
-
 sudo adduser aadams
-
 ```
 
 Install Requirements
@@ -187,12 +169,10 @@ Install Requirements
 ### miniconda
 
 ```shell
-
 mkdir -p ~/sys/sw/linux/miniconda/64/
 cd ~/sys/sw/linux/miniconda/64/
 wget https://repo.continuum.io/miniconda/Miniconda2-4.2.12-Linux-x86_64.sh
 # wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
-
 ```
 
 ### Checksums
@@ -200,27 +180,21 @@ wget https://repo.continuum.io/miniconda/Miniconda2-4.2.12-Linux-x86_64.sh
 #### Get checksum of downloaded file
 
 ```shell
-
 md5sum Miniconda2-4.2.12-Linux-x86_64.sh > md5sum-Miniconda2-4.2.12-Linux-x86_64.txt
 cat md5sum-Miniconda2-4.2.12-Linux-x86_64.txt
-
 ```
 
 #### Download checksums
 
 ```shell
-
 curl -sL https://repo.continuum.io/miniccurl -L https://repo.continuum.io/miniconda/ | html2text -width 300  > md5sums.txt
-
 ```
 
 #### Compare checksums
 
 ```shell
-
 cat md5sums.txt | grep Miniconda2-4.2.12-Linux-x86_64.sh
 cat md5sum-Miniconda2-4.2.12-Linux-x86_64.txt
-
 ```
 
 ### Install
@@ -230,10 +204,8 @@ bash Miniconda2-latest-Linux-x86_64.sh -b
 ### add to bashrc
 
 ```shell
-
 # added by Miniconda2 4.2.12 installer
 export PATH="/home/aadams/miniconda2/bin:$PATH"
-
 ```
 
 ### Test
@@ -241,9 +213,7 @@ export PATH="/home/aadams/miniconda2/bin:$PATH"
 Restart your terminal session then:
 
 ```shell
-
 miniconda2/bin/conda list
-
 ```
 
 ## Create Ansible environment
@@ -251,63 +221,104 @@ miniconda2/bin/conda list
 This may take some time and requires an internet connection
 
 ```shell
-
-    ANSIBLE_VERSION=1.9.0.1
-    conda create -n ansible-$ANSIBLE_VERSION -c csteel ansible=$ANSIBLE_VERSION
-
+ANSIBLE_VERSION=1.9.0.1
+conda create -n ansible-$ANSIBLE_VERSION -c csteel ansible=$ANSIBLE_VERSION
 ```
 
 ### to activate
 
 ```shell
-
 source activate ansible-1.9.0.1
-
 ```
 ### To deactivate
 
 ```shell
-
 source deactivate
 
 ### Testing
 
-```shell
+​```shell
 
 ansible --version
 ansible 1.9.0.1
   configured module search path = None
+```
 
+### To list ansible versions available
+
+```shell
+anaconda search -t conda ansible
+```
+
+#### Output example
+
+```shell
+(ansible) cjs@automa:~/projects/ace$ anaconda search -t conda ansible
+Using Anaconda Cloud api site https://api.anaconda.org
+Run 'anaconda show <USER/PACKAGE>' to get more details:
+Packages:
+     Name                      |  Version | Package Types   | Platforms      
+     ------------------------- |   ------ | --------------- | ---------------
+     ActivisionGameScience/ansible |    1.7.2 | conda           | linux-64       
+                                          : Radically simple IT automation
+     AnneTheAgile/ansible      |    1.6.2 | conda           | osx-64         
+                                          : Radically simple IT automation
+     barnybug/ansible          |    1.7.1 | conda           | linux-64, osx-64
+     bioconda/ansible          |    1.9.4 | conda           | linux-64, osx-64
+                                          : Radically simple IT automation
+     cgsanchez/ansible         |  2.0.0.2 | conda           | osx-64         
+                                          : Radically simple IT automation
+     cshowers/ansible          |  2.2.0.0 | conda           | linux-64       
+     csteel/ansible            |  2.1.1.0 | conda           | linux-64, win-32, win-64, linux-32, osx-64
+     equipoise/ansible         |    1.9.2 | conda           | osx-64         
+                                          : Radically simple IT automation
+     gonzo/ansible             |    1.9.2 | conda           | linux-64       
+                                          : Radically simple IT automation
+     hargup/ansible            |          | conda           | linux-64, noarch
+                                          : Radically simple IT automation
+     ijstokes/ansible          |  2.0.0.2 | conda           | osx-64         
+                                          : Radically simple IT automation
+     kalefranz/ansible         |    1.9.3 | conda           | linux-64       
+     kbroughton/ansible        |  2.0.0.2 | conda           | linux-64, osx-64
+                                          : Radically simple IT automation
+     mck/ansible               |    1.7.2 | conda           | linux-64, osx-64
+                                          : Radically simple IT automation
+     miklophone/ansible        |    1.7.2 | conda           | osx-64         
+                                          : Radically simple IT automation
+     travis/ansible-shell      |    0.0.2 | conda           | linux-64       
+                                          : https://github.com/dominis/ansible-shell
+     wpb/ansible               |  2.1.1.0 | conda           | osx-64         
+                                          : Radically simple IT automation
+```
+
+### Install a different version
+
+```shell
+ conda install -c csteel ansible=2.1.1.0
 ```
 
 ### Create an alias
 
 ```shell
-
 touch  ~/.bash_aliases
 nano  ~/.bash_aliases
-
 ```
 
 #### add your alias
 
 ```shell
-
 alias ansel1.9='source activate ansible-1.9.0.1'
 alias stopansel1.9='source deactivate ansible-1.9.0.1'
-
 ```
 
 #### source ~/.bash_aliases
 
 ```shell
-
 . ~/.bash_aliases
 
 # or
 
 source ~/.bash_aliases
-
 ```
 
 Creating an Ansible project
