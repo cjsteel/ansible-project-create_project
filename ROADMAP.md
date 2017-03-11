@@ -1,5 +1,8 @@
 # file: ROADMAP.md
 #
-* migrate private role repositories to public facing git server
+#
+
+
+* simplify variable names.
 * add some automated testing.
-* ensure using multiple hosts works.
+* multiple hosts?.

@@ -5,10 +5,10 @@
 ace_ansible_logs/*
 ace_ansible_logs/ansible.log
 #
-inventory/*
-group_vars/*
-host_vars/*
-roles/*
+#inventory/*
+#group_vars/*
+#host_vars/*
+#roles/*
 
 
 # temp files
