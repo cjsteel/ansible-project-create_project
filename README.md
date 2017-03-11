@@ -1,15 +1,18 @@
 # README.md
 
+# ansible-project-create_project
+
 ## Descriptions
 
 Sets up repositories for **development**, **staging** and **production** environments.
+
 ## Requirements
 
 ### Write access to target repository.
 
 The means you need to have a passphrase protected SSH key pair on the local system with the ssh key loaded in memory. You will want to do, or have done something like the following:
 
-#### Setup SSH Keys
+### SSH Keys
 
 If you do not have a passphrase keypair generate one as follows:
 
@@ -27,12 +30,15 @@ Load you passphrase into memory:
 exec /usr/bin/ssh-agent $SHELL
 ssh-add -t 3H
 ```
+#### test
 
-### setup your host file
+ssh localhost
+
+### Inventory
+
+COnfigure your inventory
 
 ```shell
-mkdir inventory
-touch inventory/dev
 nano inventory/dev
 ```
 

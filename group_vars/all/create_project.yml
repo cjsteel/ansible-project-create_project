@@ -53,7 +53,10 @@ development_projects_root      : '{{ development_home }}/projects'
 development_project_type       : '{{ create_project_project_type }}'
 development_project_group      : '{{ development_group }}'
 development_project_name       : '{{ create_project_project_name }}'
-development_project_root_path  : '{{ development_projects_root }}/{{ development_project_type }}/{{ development_project_group }}/{{ development_project_name }}'
+
+# Edit the following to point to your projects directory
+#development_project_root_path  : '{{ development_projects_root }}/{{ create_project_group }}/{{ development_project_group }}/{{ development_project_name }}'
+development_project_root_path  : '{{ development_projects_root }}/{{ create_project_group }}/{{ development_project_name }}'
 
 development_repository : '{{ development_project_root_path }}/dev-repo'
 
@@ -63,7 +66,10 @@ staging_projects_root      : '{{ staging_home }}/projects'
 staging_project_type        : '{{ create_project_project_type }}'
 staging_project_group       : '{{ staging_group }}'
 staging_project_name        : '{{ create_project_project_name }}'
-staging_project_root_path   : '{{ staging_projects_root }}/{{ staging_project_type }}/{{ staging_project_group }}/{{ staging_project_name }}'
+
+# Edit the following to point to your projects directory
+#staging_project_root_path   : '{{ staging_projects_root }}/{{ staging_project_type }}/{{ create_project_group }}/{{ staging_project_name }}'
+staging_project_root_path   : '{{ staging_projects_root }}/{{ create_project_group }}/{{ staging_project_name }}'
 
 staging_server_dir          : '{{ staging_project_root_path}}/stage-srv'
 
@@ -73,7 +79,10 @@ production_projects_root     : '{{ production_home }}/projects'
 production_project_type      : '{{ create_project_project_type }}'
 production_project_group     : '{{ production_group }}'
 production_project_name      : '{{ create_project_project_name }}'
-production_project_root_path : '{{ production_projects_root }}/{{ production_project_type }}/{{ production_project_group }}/{{ production_project_name }}'
+
+# Edit the following to point to your projects directory
+# production_project_root_path : '{{ production_projects_root }}/{{ production_project_type }}/{{ create_project_group }}/{{ production_project_name }}'
+production_project_root_path : '{{ production_projects_root }}/{{ create_project_group }}/{{ production_project_name }}'
 
 production_server_dir     : '{{ production_project_root_path}}/prod-srv'
 
