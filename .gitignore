@@ -5,9 +5,9 @@
 ace_ansible_logs/*
 ace_ansible_logs/ansible.log
 #
-#inventory/*
-#group_vars/*
-#host_vars/*
+inventory/*
+group_vars/*
+host_vars/*
 #roles/*
 
 

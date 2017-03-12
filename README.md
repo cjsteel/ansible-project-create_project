@@ -68,35 +68,15 @@ localhost ansible_connection=local
 localhost ansible_connection=local
 ```
 
-### project/group_vars
+### project/group_vars/all
 
-#### create project/group_vars
+We will be using the `project/group_vars/all`directory to set some project wide variables for create_project.
 
-Next create and generate contents of create_project/group_vars
+ensure for the directory `group_vars/all`  and then copy the example:
 
 ```shell
 mkdir -p group_vars/all
-echo "---"                                                  > group_vars/all/create_project.yml
-echo "# group_vars/all/create_project.yml"                  >> group_vars/all/create_project.yml
-echo "#"                                                    >> group_vars/all/create_project.yml
-echo "#"                                                    >> group_vars/all/create_project.yml
-echo ""                                                     >> group_vars/all/create_project.yml
-echo "create_project_license_year    : '2016'"              >> group_vars/all/create_project.yml
-echo "create_project_author          : 'Christopher Steel'" >> group_vars/all/create_project.yml
-echo "create_project_license         : 'mit'"               >> group_vars/all/create_project.yml
-echo "create_project_user            : 'cjs'"               >> group_vars/all/create_project.yml
-echo "create_project_accept_hostkey  : True"                >> group_vars/all/create_project.yml
-echo "create_project_project_name    : 'acemenu'"           >> group_vars/all/create_project.yml
-echo "create_project_shared_repo_url : 'git@github.com:cjsteel/ansible-role-acemenu.git'" \
-        >> group_vars/all/create_project.yml
-#echo "create_project_shared_repo_url : git@github.com:cjsteel/ansible-project-create_project.git'" \
-#        >> group_vars/all/create_project.yml
-echo "create_project_testing         : False"            >> group_vars/all/create_project.yml
-
-echo ""                                                    >> group_vars/all/create_project.yml
-cat roles/production/defaults/main.yml  | grep -v \\---    >> group_vars/all/create_project.yml
-cat roles/staging/defaults/main.yml     | grep -v \\---    >> group_vars/all/create_project.yml
-cat roles/development/defaults/main.yml | grep -v \\---    >> group_vars/all/create_project.yml
+cp roles/create_project/files/create_project.yml group_vars/all/.
 cat group_vars/all/create_project.yml
 ```
 
@@ -125,6 +105,7 @@ Running the projects main playbook will run some tests as well. Testing results 
 Getting Started
 ===============
 
+
 Ansible Controllers and Targets
 -------------------------------
 
@@ -144,10 +125,12 @@ Unlike the majority of configuration automation and orchestration systems Ansibl
 
 Ansible only requires that targeted hosts run an SSH server and a version of Python 2.x
 
+
 Debian parcs and DebOps
 -----------------------
 
 If your parc is limited to Debian based hosts I would highly recommend investigating the exstensive and excellent collection of Ansible scripts started by Maciej Delmanowski of the Medical University of Gdańsk.
+
 
 Host Names
 ----------
@@ -155,6 +138,7 @@ Host Names
 Our script collection is used to target new workstations as well to maintain existing ones. As we currently do not have control of all of the DNS servers that we make use of we tend to avoid using fqdn to refer to them.
 
 So rather than referring to a host as ``worstation-01.example.com`` we refer to it as ``worstation-01``.
+
 
 Root or Sudo User
 -----------------
@@ -166,8 +150,10 @@ Our bootstrap script requires that targeted systems have a root or sudo user wit
 
 The ``admin`` account requires a password as SSH keys are not installed yet.
 
+
 Requirements
 ------------
+
 
 Create an Unprivledged user
 ---------------------------
@@ -179,6 +165,7 @@ On the Ansible controller we will create a regular user without sudo.
 ```shell
 sudo adduser aadams
 ```
+
 
 Install Requirements
 --------------------
@@ -337,6 +324,7 @@ alias stopansel1.9='source deactivate ansible-1.9.0.1'
 
 source ~/.bash_aliases
 ```
+
 
 Creating an Ansible project
 ---------------------------
