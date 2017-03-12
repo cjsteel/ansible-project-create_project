@@ -1,19 +1,29 @@
 ---
-# defaults file for roles/ansible-role-staging
+# file: roles/ansible-role-staging/defaults/main.yml
 #
 #
 
-staging_user    : '{{ production_user }}'
+## Staging variables
+#
+# user and permission on the staging host
+
+staging_host    : 'localhost'
+staging_user    : '{{ create_project_user }}'
 staging_group   : '{{ staging_user }}'
-staging_host    : '{{ production_host }}'
 staging_mode    : '0775'
+staging_home    : '/home/{{ staging_user }}'
 
-staging_projects_root_path  : '{{ production_projects_root_path }}'
-staging_project_type        : '{{ production_project_type }}'
-staging_project_group       : '{{ production_project_group }}'
-staging_project_name        : '{{ production_project_name }}'
+## Staging variables
+#
+# variables used to adjust paths on staging server
 
-staging_project_root_path   : '{{ staging_projects_root_path }}/{{ staging_project_type }}/{{ staging_project_group }}/{{ staging_project_name }}'
+staging_projects_root : '{{ staging_home }}/projects'
+staging_project_type  : '{{ create_project_project_type }}'
+staging_project_group : '{{ staging_group }}'
+staging_project_name  : '{{ create_project_project_name }}'
+
+# projects staging server paths
+
+staging_project_root_path   : '{{ staging_projects_root }}/{{ create_project_group }}/{{ staging_project_name }}'
 
 staging_server_dir          : '{{ staging_project_root_path}}/stage-srv'
-

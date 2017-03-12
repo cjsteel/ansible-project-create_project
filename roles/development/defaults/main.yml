@@ -1,5 +1,35 @@
 ---
-# defaults file for ansible-role-development
+# file: roles/ansible-role-development/defaults/main.yml
+#
+
+## Development
+
+## Values passed to role from ansible-role-create_project role.
 #
 #
+
+development_origin_master_repository: '{{ create_project_shared_repo_url }}'
+development_user                    : '{{ create_project_user }}'
+
+## Defaults vars in roles/ansible-role-development/defaults/main.yml
+#
+#
+
+development_host  : 'localhost'
+development_group : '{{ development_user }}'
+development_mode  : '0775'
+development_home  : '/home/{{ development_user }}'
+
+# variables used to adjust paths on the development system
+
+development_projects_root      : '{{ development_home }}/projects'
+development_project_type       : '{{ create_project_project_type }}'
+development_project_group      : '{{ development_group }}'
+development_project_name       : '{{ create_project_project_name }}'
+
+# development (workstations) repository path
+
+development_project_root_path  : '{{ development_projects_root }}/{{ create_project_group }}/{{ development_project_name }}'
+
+development_repository : '{{ development_project_root_path }}/dev-repo'
 

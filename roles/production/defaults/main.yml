@@ -1,20 +1,38 @@
 ---
 # defaults file for roles/ansible-role-production
 #
+# For (create_project role's) project wide variables migrate or 
+# overide varables in projects group_vars or host_vars directories.
+
+# user and permission on the production host
 #
 
+production_host  : 'localhost'
 production_user  : '{{ create_project_user }}'
 production_group : '{{ production_user }}'
-production_host  : localhost
 production_mode  : '0775'
+production_home  : '/home/{{ production_user }}'
 
-production_projects_root_path  : '/home/{{ development_user }}/projects'
-production_project_type        : 'ansible'
-production_project_group       : 'ace' 
-production_project_name        : '{{ create_project_project_name }}'
-production_project_root_path   : '{{ production_projects_root_path }}/{{ production_project_type }}/{{ production_project_group }}/{{ production_project_name }}'
+# variables used to adjust paths on the production server
+#
 
-production_server_dir : '{{ production_project_root_path}}/prod-srv'
-production_repository  : '{{ production_project_root_path }}/prod-repo'
+production_projects_root     : '{{ production_home }}/projects'
+production_project_type      : '{{ create_project_project_type }}'
+production_project_group     : '{{ production_group }}'
+production_project_name      : '{{ create_project_project_name }}'
+
+# root directory of production server and repository.
+#
+
+production_project_root_path : '{{ production_projects_root }}/{{ create_project_group }}/{{ production_project_name }}'
+
+# Production (web?) server path
+#
+production_server_dir     : '{{ production_project_root_path}}/prod-srv'
+
+# Production servers repository url and path
+#
+production_repository     : '{{ production_project_root_path }}/prod-repo'
 production_repository_url : '{{ production_user }}@{{ production_host }}\:{{ production_repository }}'
+
 
