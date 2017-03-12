@@ -2,41 +2,52 @@
 
 # ansible-project-create_project
 
-## Descriptions
+## Status
 
-Sets up repositories for **development**, **staging** and **production** environments.
+* under development, works
+
+## Description
+
+Sets up repositories for **development**, **staging** and **production** environments. This includes cloning the target (and existing repository) from Github under your user name.
 
 ## Requirements
 
-### Write access to target repository.
+### a Github repository
 
-The means you need to have a passphrase protected SSH key pair on the local system with the ssh key loaded in memory. You will want to do, or have done something like the following:
+* a github account
+* a repository you have wrtie acess to.
+* a copy of your public key loaded added to the project.
 
 ### SSH Keys
 
-If you do not have a passphrase keypair generate one as follows:
+You will want to have a good understanding of ssh keys and key pairs.
+
+Using this role can required access to up to four system using ssh keypairs.
+
+- your github repository
+- your development system
+- your staging system
+- your production system
+- and perhaps your Ansible controller if you access it remotely.
+
+If you do not have a passphrase protected keypair you can generate one as follows:
 
 ```shell
 ssh-keygen
 ```
 
-Place a copy of your public key on the target git server
+### ssh agent and ssh-add
 
-### ssh agent
-
-Load you passphrase into memory:
+You will need to use ssh-agent and ssh-add in order to load your key identitie(s) to the authentication agent. This way you can connect to your target system(s) without needing to enter your passphrase each time.
 
 ```shell
-exec /usr/bin/ssh-agent $SHELL
-ssh-add -t 3H
+eval `/usr/bin/ssh-agent`
+/usr/bin/ssh-add -t 3H
 ```
-#### test
-
-ssh localhost
 
 ### Inventory
 
-COnfigure your inventory
+Configure your inventory
 
 ```shell
 nano inventory/dev
