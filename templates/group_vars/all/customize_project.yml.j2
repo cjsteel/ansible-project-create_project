@@ -6,16 +6,17 @@ create_project_accept_hostkey  : True
 
 create_project_controller_user : '{{ fact_controller_user }}'
 
-create_project_license_year    : '2016'
-create_project_author          : 'Firstname Lastname'
-create_project_license         : 'mit'
-create_project_user            : '{{ create_project_controller_user }}' # 'mary'
-create_project_home            : '/home/{{ create_project_user }}/'
+create_project_license_year    : '{{ project_creation_year }}'
+create_project_author          : '{{ project_creators_firstname }} {{ project_creators_lastname }}'
+create_project_license         : '{{ project_license }}'
+create_project_user            : '{{ fact_controller_user }}' # 'mary'
+create_project_home            : '{{ fact_controller_home }}/'
 
-create_project_project_name    : 'your_project'
-create_project_group           : 'project_group'
-create_project_project_type    : 'ansible'
-create_project_git_user        : 'your_github_user'
+create_project_project_name    : '{{ projects_short_name }}'
+create_project_group           : '{{ project_group_name }}'
+create_project_project_type    : '{{ project_type }}'
+
+create_project_git_user        : '{{ project_github_user }}'
 create_project_git_server      : 'github.com'
 create_project_shared_repo_url : 'git@{{ create_project_git_server }}:{{ create_project_git_user }}/{{ create_project_project_type }}-project-{{ create_project_project_name }}.git'
 #create_project_shared_repo_url : 'git@github.com:cjsteel/ansible-project-automa.git'

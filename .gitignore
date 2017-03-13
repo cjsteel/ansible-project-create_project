@@ -1,6 +1,8 @@
 # temp files
 *~
 
+vars/project_customizations.yml
+
 # directories
 ace_ansible_logs/*
 ace_ansible_logs/ansible.log

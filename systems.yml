@@ -10,7 +10,7 @@
     - debug: var=fact_controller_home
 
 
-#- include: controller.yml
+- include: controller.yml
 - include: production.yml
 - include: staging.yml
 - include: development.yml
