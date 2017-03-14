@@ -70,13 +70,9 @@ localhost ansible_connection=local
 
 ### project/group_vars/all
 
-We will be using the `project/group_vars/all`directory to set some project wide variables for create_project.
-
-ensure for the directory `group_vars/all`  and then copy the example:
-
 ```shell
 mkdir -p group_vars/all
-cp roles/create_project/files/create_project.yml group_vars/all/.
+cp templates/group_vars/all/create_project.yml group_vars/all/.
 cat group_vars/all/create_project.yml
 ```
 
