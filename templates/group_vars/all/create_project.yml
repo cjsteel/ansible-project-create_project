@@ -1,0 +1,72 @@
+---
+# file: group_vars/all/create_project.yml
+
+create_project_testing         : False
+create_project_accept_hostkey  : True
+
+create_project_license_year    : '2016'
+create_project_author          : 'Firstname Lastname'
+create_project_license         : 'mit'
+
+# move and rename var for create_projects_root here   : '~/projects'
+create_project_parent_dir      : 'parc'  # a useful place to store things we want to keep out of the projects (public) repo.
+
+# git
+
+# for project named "ansible-project-automa"
+create_project_project_type    : 'ansible'
+create_project_project_subtype : 'project'
+create_project_project_name    : 'automa'
+create_project_repo_long_name  : '{{ create_project_project_type }}-{{ create_project_project_subtype }}-{{ create_project_project_name }}'
+
+create_project_git_user        : 'cjsteel'
+create_project_git_server      : 'github.com'
+create_project_shared_repo_url : 'git@{{ create_project_git_server }}:{{ create_project_git_user }}/{{ create_project_repo_long_name }}.git'
+#create_project_shared_repo_url : 'git@github.com:cjsteel/ansible-project-automa.git'
+
+# controller
+
+create_project_controller_user : '{{ fact_controller_user }}'
+create_project_controller_group: '{{ create_project_controller_user }}'
+create_project_controller_home : '{{ fact_controller_home }}/'
+
+create_project_user            : '{{ create_project_controller_user }}' # 'mary'
+create_project_group           : '{{ create_project_controller_group }}'
+create_project_home            : '{{ create_project_controller_home }}'
+
+## Staging
+#
+# required by "TASK [development : template development repos .git/hooks/post-commit]"
+
+staging_host : 'localhost'
+
+staging_user            : '{{ create_project_user }}' 
+staging_group           : '{{ create_project_user }}'
+staging_home            : '{{ create_project_home }}'
+
+
+staging_projects_root     : '{{ staging_home }}/projects'
+staging_project_name      : '{{ create_project_project_name }}'
+staging_project_root_path : '{{ staging_projects_root }}/{{ create_project_parent_dir }}/{{ staging_project_name }}'
+
+staging_server_dir : '{{ staging_project_root_path}}/stage-srv'
+
+
+## Production
+#
+# Required by "TASK [development : Execute 'git remote add production' in the development repo"
+
+production_host : 'localhost'
+
+production_user  : '{{ create_project_user }}'
+production_group : '{{ create_project_group }}'
+production_home : '{{ create_project_home }}'
+
+production_projects_root     : '{{ production_home }}/projects'
+production_project_name      : '{{ create_project_project_name }}'
+production_project_root_path : '{{ production_projects_root }}/{{ create_project_parent_dir }}/{{ production_project_name }}'
+
+production_repository     : '{{ production_project_root_path }}/prod-repo'
+production_repository_url : '{{ production_user }}@{{ production_host }}\:{{ production_repository }}'
+
+

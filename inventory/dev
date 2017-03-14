@@ -1,7 +1,3 @@
-
-[controller]
-ace-ws-10 ansible_connection=local
-
 [development]
 localhost ansible_connection=local
 

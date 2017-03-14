@@ -24,7 +24,7 @@ production_project_name      : '{{ create_project_project_name }}'
 # root directory of production server and repository.
 #
 
-production_project_root_path : '{{ production_projects_root }}/{{ create_project_group }}/{{ production_project_name }}'
+production_project_root_path : '{{ production_projects_root }}/{{ create_project_parent_dir }}/{{ production_project_name }}'
 
 # Production (web?) server path
 #
