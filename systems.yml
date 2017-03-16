@@ -9,6 +9,97 @@
     - debug: var=fact_controller_user
     - debug: var=fact_controller_home
 
+# testing
+
+    - debug: var=create_project_testing
+
+
+    - debug: var=create_project_accept_hostkey
+
+# creator(S)
+
+    - debug: var=create_project_license_year
+    - debug: var=create_project_author
+    - debug: var=create_project_license
+
+    - debug: var=create_project_parent_dir
+
+# git
+
+    - debug: var=create_project_project_type
+    - debug: var=create_project_project_subtype
+    - debug: var=create_project_project_name
+    - debug: var=create_project_repo_long_name
+
+    - debug: var=create_project_git_user
+    - debug: var=create_project_git_server
+    - debug: var=create_project_shared_repo_url
+
+# controller
+
+    - debug: var=create_project_controller_user
+    - debug: var=create_project_controller_group
+    - debug: var=create_project_controller_home
+
+# create project
+#
+    - debug: var=create_project_user
+    - debug: var=create_project_group
+    - debug: var=create_project_home
+    - debug: var=create_project_mode
+
+# production
+#
+    - debug: var=production_host
+
+    - debug: var=production_user
+    - debug: var=production_group
+    - debug: var=production_home
+    - debug: var=production_mode
+
+
+    - debug: var=production_projects_root
+    - debug: var=production_project_name
+    - debug: var=production_project_root_path
+
+    - debug: var=production_repository
+    - debug: var=production_repository_url
+
+# staging
+#
+    - debug: var=staging_host
+
+    - debug: var=staging_user
+    - debug: var=staging_group
+    - debug: var=staging_home
+    - debug: var=staging_mode
+
+
+    - debug: var=staging_projects_root
+    - debug: var=staging_project_name
+    - debug: var=staging_project_root_path
+
+    - debug: var=staging_server_dir
+
+# development
+
+    - debug: var=development_host
+
+    - debug: var=development_user
+    - debug: var=development_group
+    - debug: var=development_home
+    - debug: var=development_mode
+
+
+    - debug: var=development_projects_root
+    - debug: var=development_project_name
+    - debug: var=development_project_root_path
+
+    - debug: var=development_server_dir
+
+
+
+
 
 #- include: controller.yml
 - include: production.yml

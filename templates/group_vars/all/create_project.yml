@@ -8,16 +8,21 @@ create_project_license_year    : '2016'
 create_project_author          : 'Firstname Lastname'
 create_project_license         : 'mit'
 
-# move and rename var for create_projects_root here   : '~/projects'
+# used to create paths
+#
+#create_projects_root_dir       : '~/projects' # to incorporate at a later date
 create_project_parent_dir      : 'parc'  # a useful place to store things we want to keep out of the projects (public) repo.
 
-# git
+# used to create paths and for repository naming
+#
+create_project_project_type    : 'ansible'      # 'ansible'     # 'development' # 'ansible'
+create_project_project_subtype : 'role'         # 'development' # 'project'     # 'project'
+create_project_project_name    : 'kvm'   # 'docs'        # 'docs'        # 'automa'
 
-# for project named "ansible-project-automa"
-create_project_project_type    : 'ansible'
-create_project_project_subtype : 'project'
-create_project_project_name    : 'automa'
+# then long name of the repository we are developing
 create_project_repo_long_name  : '{{ create_project_project_type }}-{{ create_project_project_subtype }}-{{ create_project_project_name }}'
+
+# git
 
 create_project_git_user        : 'cjsteel'
 create_project_git_server      : 'github.com'
@@ -28,11 +33,32 @@ create_project_shared_repo_url : 'git@{{ create_project_git_server }}:{{ create_
 
 create_project_controller_user : '{{ fact_controller_user }}'
 create_project_controller_group: '{{ create_project_controller_user }}'
-create_project_controller_home : '{{ fact_controller_home }}/'
+create_project_controller_home : '{{ fact_controller_home }}'
 
 create_project_user            : '{{ create_project_controller_user }}' # 'mary'
 create_project_group           : '{{ create_project_controller_group }}'
 create_project_home            : '{{ create_project_controller_home }}'
+create_project_mode            : '0755'
+
+## Production
+#
+# Required by "TASK [development : Execute 'git remote add production' in the development repo"
+
+production_host : 'localhost'
+
+production_user  : '{{ create_project_user }}'
+production_group : '{{ create_project_group }}'
+production_home  : '{{ create_project_home }}'
+production_mode  : '{{ create_project_mode }}'
+
+production_projects_root     : '{{ production_home }}/projects'
+production_project_name      : '{{ create_project_project_name }}'
+production_project_root_path : '{{ production_projects_root }}/{{ create_project_parent_dir }}/{{ production_project_name }}'
+
+production_repository     : '{{ production_project_root_path }}/prod-repo'
+production_repository_url : '{{ production_user }}@{{ production_host }}:{{ production_repository }}'
+
+production_server_dir     : '{{ production_project_root_path}}/prod-srv'
 
 ## Staging
 #
@@ -43,7 +69,7 @@ staging_host : 'localhost'
 staging_user            : '{{ create_project_user }}' 
 staging_group           : '{{ create_project_user }}'
 staging_home            : '{{ create_project_home }}'
-
+staging_mode            : '{{ create_project_mode }}'
 
 staging_projects_root     : '{{ staging_home }}/projects'
 staging_project_name      : '{{ create_project_project_name }}'
@@ -51,22 +77,23 @@ staging_project_root_path : '{{ staging_projects_root }}/{{ create_project_paren
 
 staging_server_dir : '{{ staging_project_root_path}}/stage-srv'
 
-
-## Production
+## Development
 #
-# Required by "TASK [development : Execute 'git remote add production' in the development repo"
 
-production_host : 'localhost'
+development_origin_master_repository: '{{ create_project_shared_repo_url }}'
 
-production_user  : '{{ create_project_user }}'
-production_group : '{{ create_project_group }}'
-production_home : '{{ create_project_home }}'
+development_host : 'localhost'
 
-production_projects_root     : '{{ production_home }}/projects'
-production_project_name      : '{{ create_project_project_name }}'
-production_project_root_path : '{{ production_projects_root }}/{{ create_project_parent_dir }}/{{ production_project_name }}'
+development_user  : '{{ create_project_user }}' 
+development_group : '{{ create_project_user }}'
+development_home  : '{{ create_project_home }}'
+development_mode  : '{{ create_project_mode }}'
 
-production_repository     : '{{ production_project_root_path }}/prod-repo'
-production_repository_url : '{{ production_user }}@{{ production_host }}\:{{ production_repository }}'
+development_projects_root     : '{{ development_home }}/projects'
+development_project_name      : '{{ create_project_project_name }}'
+development_project_root_path : '{{ development_projects_root }}/{{ create_project_parent_dir }}/{{ development_project_name }}'
+
+development_server_dir : '{{ development_project_root_path}}/stage-srv'
+development_repository : '{{ development_project_root_path }}/dev-repo'
 
 

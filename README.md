@@ -1,10 +1,15 @@
-# README.md
+# file: projects/ansible-create-project/README.md
 
 # ansible-project-create_project
 
 ## Status
 
-* under development, works
+* under development still needs:
+
+    * built in testing
+    * var cleanup
+    * field usage
+    * Documentation
 
 ## Description
 
