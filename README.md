@@ -1,15 +1,10 @@
-# file: projects/ansible-create-project/README.md
+# README.md
 
 # ansible-project-create_project
 
 ## Status
 
-* under development still needs:
-
-    * built in testing
-    * var cleanup
-    * field usage
-    * Documentation
+* under development, works
 
 ## Description
 
@@ -86,13 +81,10 @@ cat group_vars/all/create_project.yml
 If running everything locally you should at least change the following four variables in `group_vars/all/create_project.yml`:
 
 ```yaml
-create_project_license_year: '2016'
-create_project_author      : 'Christopher Steel'
-create_project_license     : 'mit'
-create_project_user        : 'cjs'
+
 ```
 
-If you want to run against multiple hosts (dev, staging, production) you may want to make changes to  other variables and may need to make other adjustments to the scripts.
+If you want to run against multiple hosts (dev, staging, production) you need to make changes to other variables and may need to make other adjustments to the scripts.
 
 ## Run your playbook
 
@@ -103,6 +95,46 @@ ansible-playbook systems.yml --ask-become-pass
 ## Testing results
 
 Running the projects main playbook will run some tests as well. Testing results will be below this line:
+
+## Configuring your new project
+
+### ansible-galaxy
+
+Move into your projects directory root
+
+```shell
+cd ~/projects/parc/rminc/
+```
+
+create a new ansible galaxy project
+
+```shell
+ansible-galaxy init -p . ansible-role-rminc
+```
+
+copy the galaxy content to yoru dev-repo
+
+```shell
+cd dev-repo
+# copied to root of dev-repo
+cp ../ansible-project-templates/roles/Vagrantfile .
+cp ../ansible-project-templates/roles/.gitignore .
+cp ../ansible-project-templates/roles/README.md .
+cp ../ansible-project-templates/roles/.travis.yml .
+# copy to dev-repo/tests
+cd tests
+cp -R ../ansible-project-templates/roles/tests/* .
+```
+
+modify
+
+```shell
+README.md
+roles/tests/*
+```
+
+
+
 Getting Started
 ===============
 
